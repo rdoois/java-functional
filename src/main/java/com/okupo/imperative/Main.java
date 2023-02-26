@@ -2,6 +2,7 @@ package com.okupo.imperative;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -29,8 +30,10 @@ public class Main {
 
         // Declarative approach
         System.out.println("// Declarative approach");
+
+        Predicate<Person> personPredicate = person -> Gender.FEMALE.equals(person.gender);
         List<Person> femalesList = people.stream()
-                .filter(person -> Gender.FEMALE.equals(person.gender))
+                .filter(personPredicate)
                 .collect(Collectors.toList());
 
         femalesList.forEach(System.out::println);
