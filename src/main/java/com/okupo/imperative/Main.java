@@ -2,6 +2,7 @@ package com.okupo.imperative;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,6 +14,7 @@ public class Main {
                 new Person("Alice", Gender.FEMALE));
 
         // Imperative approach
+        System.out.println("// Imperative approach");
         List<Person> females = new ArrayList<Person>();
 
         for (Person person : people) {
@@ -24,6 +26,18 @@ public class Main {
         for (Person female : females) {
             System.out.println(female);
         }
+
+        // Declarative approach
+        System.out.println("// Declarative approach");
+        List<Person> femalesList = people.stream()
+                .filter(person -> Gender.FEMALE.equals(person.gender))
+                .collect(Collectors.toList());
+
+        femalesList.forEach(System.out::println);
+
+        // people.stream()
+        // .filter(person -> Gender.FEMALE.equals(person.gender))
+        // .forEach(System.out::println);
     }
 
     static class Person {
